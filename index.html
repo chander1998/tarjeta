@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nombre Apellido — Empresa</title>
+<meta name="description" content="Tarjeta de contacto digital">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0a0c;
+    --surface: #141417;
+    --line: #2a2a2f;
+    --text: #f3f2ef;
+    --muted: #9a999f;
+    --accent: #c81e3a;
+    --accent-soft: rgba(200,30,58,0.14);
+    --radius: 18px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html, body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+  }
+
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 32px 20px;
+  }
+
+  .card{
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: 44px 36px 36px;
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; bottom:0;
+    width: 5px;
+    background: var(--accent);
+  }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .identity{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .monogram{
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .org{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .title{
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .rule{
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 22px 0 30px;
+  }
+
+  .details{
+    border-top: 1px solid var(--line);
+  }
+
+  .row{
+    display:flex;
+    align-items:flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row svg{
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    stroke: var(--accent);
+  }
+
+  .row .label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+
+  .row .value{
+    font-size: 15px;
+    word-break: break-word;
+  }
+
+  .actions{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 8px;
+    height: 48px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .btn:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn:hover{ opacity: 0.88; }
+
+  .btn-primary{
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .btn-secondary{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+  }
+
+  footer{
+    text-align:center;
+    margin-top: 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  /* Animación de entrada, sutil */
+  .card > *{
+    opacity: 0;
+    transform: translateY(8px);
+    animation: rise 0.5s ease forwards;
+  }
+  .eyebrow{ animation-delay: 0.05s; }
+  .identity{ animation-delay: 0.12s; }
+  h1{ animation-delay: 0.18s; }
+  .title{ animation-delay: 0.22s; }
+  .rule{ animation-delay: 0.28s; }
+  .details{ animation-delay: 0.34s; }
+  .actions{ animation-delay: 0.42s; }
+  footer{ animation-delay: 0.5s; }
+
+  @keyframes rise{
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .card > *{ animation: none; opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 380px){
+    .card{ padding: 36px 24px 28px; }
+    h1{ font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<main class="card">
+  <p class="eyebrow">Perfil de contacto</p>
+
+  <div class="identity">
+    <div class="monogram">AGS</div>
+    <div class="org">FCAB</div>
+  </div>
+
+  <h1>Alexander Galleguillos Solar</h1>
+  <p class="title">Jefe Unidad Confiabilidad Vías</p>
+
+  <div class="rule"></div>
+
+  <address class="details" style="font-style:normal; list-style:none;">
+    <div class="row">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <div>
+        <div class="label">Teléfono</div>
+        <div class="value">+56 9 6630 9592</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+      <div>
+        <div class="label">Correo</div>
+        <div class="value">alexander.galleguillos@fcab.cl</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>
+        <div class="label">Ubicación</div>
+        <div class="value">Antofagasta, Chile</div>
+      </div>
+    </div>
+  </address>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="contacto.vcf">Guardar contacto</a>
+    <a class="btn btn-secondary" href="mailto:alexander.galleguillos@fcab.cl">Escribir correo</a>
+  </div>
+
+  <footer>Tarjeta digital</footer>
+</main>
+
+</body>
+</html>
